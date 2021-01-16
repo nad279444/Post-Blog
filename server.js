@@ -3,12 +3,13 @@ const mongoose = require("mongoose")
 const app = express()
 const articleRouter = require('./routes/articles')
 const Article = require('./Models/article')
+const methodOveride = require('method-override')
 
 mongoose.connect("mongodb://localhost/blog",{ useNewUrlParser: true,useUnifiedTopology: true ,useCreateIndex: true})
 
 app.set('view engine','ejs')
 
-
+app.use(methodOveride("_method"))
 app.use(express.urlencoded({extended:false}))
 
 app.get('/',async(req,res) => {
